@@ -1,0 +1,19 @@
+# nginx-follower-affinity.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-follower-affinity
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: role
+                operator: In
+                values:
+                  - leader
+          topologyKey: "kubernetes.io/hostname"
+  containers:
+    - name: nginx
+      image: nginx

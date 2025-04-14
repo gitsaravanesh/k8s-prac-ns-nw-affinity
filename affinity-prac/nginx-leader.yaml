@@ -1,0 +1,12 @@
+# nginx-leader.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-leader
+  labels:
+    app: nginx
+    role: leader
+spec:
+  containers:
+    - name: nginx
+      image: nginx
